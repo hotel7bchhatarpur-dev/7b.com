@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel 7-B | Royal Guest Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        :root {
+            --royal-gold: #c5a059;
+            --deep-navy: #0a1128;
+            --ivory: #fcfaf7;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--ivory);
+            color: var(--deep-navy);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .royal-font { font-family: 'Cinzel', serif; }
+
+        .royal-gradient {
+            background: linear-gradient(135deg, #0a1128 0%, #1c2a4a 100%);
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:active { transform: scale(0.95); }
+
+        .item-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        .active-view { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="pb-32">
+
+    <script>
+        const WHATSAPP_NUMBER = "919981014603";
+        const RECEPTION_NUMBER = "917880009215";
+    </script>
+
+    <!-- Royal Header -->
+    <header class="royal-gradient text-white px-6 pt-10 pb-24 rounded-b-[3.5rem] relative overflow-hidden shadow-2xl">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+        <div class="relative z-10 flex justify-between items-center">
+            <div>
+                <h1 class="royal-font text-2xl font-bold tracking-[0.2em] text-[#c5a059]">HOTEL 7-B</h1>
+                <p class="text-[9px] uppercase tracking-[0.4em] text-white/50 mt-1">Chhatarpur's Finest Stay</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="showView('home')" class="p-3 bg-white/10 rounded-2xl backdrop-blur-md"><i data-lucide="home" class="w-5 h-5"></i></button>
+            </div>
+        </div>
+
+        <!-- Room Input Area -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[88%] bg-white p-5 rounded-[2rem] shadow-xl border-b-4 border-[#c5a059] flex flex-col items-center">
+            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">अतिथि का रूम नंबर</span>
+            <input id="room-input" type="number" placeholder="---" class="w-full text-3xl font-bold text-center outline-none bg-transparent royal-font text-slate-800">
+        </div>
+    </header>
+
+    <!-- Navigation Views -->
+    
+    <!-- 1. Home Dashboard -->
+    <main id="view-home" class="mt-16 px-6 space-y-6 active-view">
+        <h2 class="royal-font text-xl font-bold text-center mb-8">शाही सेवाएँ (Services)</h2>
+        
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Restaurant -->
+            <button onclick="showView('restaurant')" class="service-card p-6 flex flex-col items-center text-center shadow-lg">
+                <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center mb-4 border border-orange-100">
+                    <i data-lucide="utensils" class="text-orange-600 w-7 h-7"></i>
+                </div>
+                <span class="font-bold text-sm">रेस्टोरेंट</span>
+                <span class="text-[9px] text-slate-400 uppercase mt-1">Food Menu</span>
+            </button>
+
+            <!-- Reception -->
+            <a href="tel:+917880009215
