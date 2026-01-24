@@ -5,59 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOTEL 7B - Digital Menu</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; padding: 10px; padding-bottom: 100px; }
-        .section-title { background: #2c3e50; color: white; padding: 12px; border-radius: 8px; margin: 20px 0 10px; font-size: 18px; text-align: center; }
-        .item { background: white; margin: 8px 0; padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .price { color: #e94560; font-weight: bold; margin-right: 10px; }
-        .qty { width: 50px; padding: 8px; border: 1px solid #ddd; border-radius: 5px; text-align: center; font-size: 16px; }
-        .footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 15px; display: flex; gap: 10px; box-shadow: 0 -3px 15px rgba(0,0,0,0.2); }
-        .btn-send { background: #28a745; color: white; border: none; padding: 15px; border-radius: 8px; flex: 2; font-weight: bold; font-size: 18px; cursor: pointer; }
-        .btn-call { background: #ff416c; color: white; text-decoration: none; padding: 15px; border-radius: 8px; flex: 1; text-align: center; font-weight: bold; }
+        body { font-family: 'Segoe UI', sans-serif; text-align: center; background-color: #f4f4f4; padding: 15px; }
+        .menu-header { background: #2c3e50; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .item { background: white; margin: 10px auto; padding: 12px; border-radius: 8px; max-width: 450px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .price { color: #e94560; font-weight: bold; }
+        .qty-input { width: 50px; padding: 5px; border: 1px solid #ccc; border-radius: 4px; }
+        .order-box { background: #fff; padding: 20px; border-radius: 8px; max-width: 450px; margin: 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        input[type="text"] { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        .btn-send { background-color: #28a745; color: white; padding: 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 18px; width: 100%; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <h2 style="text-align:center; color:#2c3e50;">🍽️ HOTEL 7B - डिजिटल मेनू</h2>
+    <div class="menu-header">
+        <h1>🍴 HOTEL 7B 🍴</h1>
+        <p>अपना डिजिटल ऑर्डर यहाँ दें</p>
+    </div>
 
-    <div class="section-title">चाय और नाश्ता</div>
-    <div class="item"><span>Special Tea (चाय)</span> <span><span class="price">₹29</span><input type="number" class="qty" data-name="Tea" min="0" placeholder="0"></span></div>
-    <div class="item"><span>Poha (पोहा)</span> <span><span class="price">₹59</span><input type="number" class="qty" data-name="Poha" min="0" placeholder="0"></span></div>
-    <div class="item"><span>Aloo Paratha</span> <span><span class="price">₹99</span><input type="number" class="qty" data-name="Aloo Paratha" min="0" placeholder="0"></span></div>
+    <h3>☕ चाय और नाश्ता</h3>
+    <div class="item"><span>Special Tea (चाय) - ₹29</span><input type="number" class="qty" data-name="Special Tea" placeholder="0" class="qty-input"></div>
+    <div class="item"><span>Poha (पोहा) - ₹59</span><input type="number" class="qty" data-name="Poha" placeholder="0" class="qty-input"></div>
+    <div class="item"><span>Aloo Paratha (आलू पराठा) - ₹99</span><input type="number" class="qty" data-name="Aloo Paratha" placeholder="0" class="qty-input"></div>
 
-    <div class="section-title">पनीर और सब्जियां</div>
-    <div class="item"><span>Kadhai Paneer</span> <span><span class="price">₹239</span><input type="number" class="qty" data-name="Kadhai Paneer" min="0" placeholder="0"></span></div>
-    <div class="item"><span>Dal Makhni</span> <span><span class="price">₹219</span><input type="number" class="qty" data-name="Dal Makhni" min="0" placeholder="0"></span></div>
+    <h3>🍲 मुख्य भोजन</h3>
+    <div class="item"><span>Kadhai Paneer (कड़ाही पनीर) - ₹239</span><input type="number" class="qty" data-name="Kadhai Paneer" placeholder="0" class="qty-input"></div>
+    <div class="item"><span>Dal Makhani (दाल मखनी) - ₹219</span><input type="number" class="qty" data-name="Dal Makhani" placeholder="0" class="qty-input"></div>
+    <div class="item"><span>Deluxe Thali (डीलक्स थाली) - ₹249</span><input type="number" class="qty" data-name="Deluxe Thali" placeholder="0" class="qty-input"></div>
+    <div class="item"><span>7B Special Thali (स्पेशल थाली) - ₹349</span><input type="number" class="qty" data-name="7B Special Thali" placeholder="0" class="qty-input"></div>
 
-    <div class="section-title">विशेष थाली</div>
-    <div class="item"><span>Deluxe Thali</span> <span><span class="price">₹219</span><input type="number" class="qty" data-name="Deluxe Thali" min="0" placeholder="0"></span></div>
-    <div class="item"><span>7B Special Thali</span> <span><span class="price">₹289</span><input type="number" class="qty" data-name="7B Special Thali" min="0" placeholder="0"></span></div>
-
-    <div class="footer-bar">
-        <a href="tel:+919981014603" class="btn-call">📞 कॉल</a>
-        <button class="btn-send" onclick="submitOrder()">🛒 ऑर्डर भेजें</button>
+    <div class="order-box">
+        <input type="text" id="roomNumber" placeholder="अपना रूम नंबर लिखें (जैसे: 101)" required>
+        <button class="btn-send" onclick="submitOrder()">ऑर्डर भेजें</button>
     </div>
 
     <script>
         function submitOrder() {
-            let orderData = "";
-            document.querySelectorAll('.qty').forEach(input => {
-                if(parseInt(input.value) > 0) {
-                    orderData += input.dataset.name + "(" + input.value + "), ";
+            var room = document.getElementById('roomNumber').value;
+            var items = document.querySelectorAll('.qty');
+            var orderDetails = "";
+            
+            items.forEach(function(item) {
+                if(item.value > 0) {
+                    orderDetails += item.getAttribute('data-name') + "(" + item.value + "), ";
                 }
             });
 
-            if(!orderData) return alert("कृपया कुछ सेलेक्ट करें!");
+            if(room == "" || orderDetails == "") {
+                alert("कृपया रूम नंबर भरें और कम से कम एक आइटम चुनें!");
+                return;
+            }
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwxTFtY517UKHYeSgVCsxV1VLVGEEbu5_I8SfcLNbGXjGjPN34-beMPvQZVcrdzpstyLg/exec';
+            // यहाँ अपनी गूगल स्क्रिप्ट वाली URL डालें
+            var url = "https://script.google.com/macros/s/AKfycbyfD0UvV3pGvPqf8BqDk6R3A9WqT5X6Y7Z8/exec";
 
-            fetch(scriptURL, {
+            fetch(url, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: JSON.stringify({ items: orderData, table: "Room/Table" })
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: "room=" + encodeURIComponent(room) + "&details=" + encodeURIComponent(orderDetails)
             }).then(() => {
-                alert("बधाई हो! ऑर्डर कंप्यूटर पर भेज दिया गया है।");
-                location.reload();
-            }).catch(() => alert("Error!"));
+                alert("ऑर्डर सफलतापूर्वक भेज दिया गया है!");
+                location.reload(); 
+            });
         }
     </script>
 </body>
