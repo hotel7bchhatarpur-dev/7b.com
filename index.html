@@ -110,11 +110,11 @@
     function viewSummary() {
         let total = 0, text = "";
         for (let n in cart) {
-            text += <p>${n} x ${cart[n].q} = ₹${cart[n].q * cart[n].p}</p>;
+            text += <p>${n} x cart[n].q = {cart[n].q * cart[n].p}</p>;
             total += cart[n].q * cart[n].p;
         }
         if (total === 0) return alert("Please select something!");
-        document.getElementById('summary-details').innerHTML = text + <hr><strong>Total: ₹${total}</strong>;
+        document.getElementById('summary-details').innerHTML = text + <hr><strong>Total:₹${total}</strong>;
         showPage('summary');
     }
 
@@ -127,13 +127,13 @@
     }
 
     function quickRequest(type) {
-        if(confirm(${type} के लिए रिक्वेस्ट भेजें?)) {
+        if(confirm(${type}के लिए रिक्वेस्ट भेजें?)) {
             push({ room: room, request: type, details: "Service Request", total: 0 });
         }
     }
 
     function submitAll() {
-        let det = Object.keys(cart).map(n => ${n}(${cart[n].q})).join(", ");
+        let det = Object.keys(cart).map(n => n({cart[n].q})).join(", ");
         let tot = Object.values(cart).reduce((s, i) => s + (i.q * i.p), 0);
         push({ room: room, request: "Restaurant Order", details: det, total: tot });
     }
