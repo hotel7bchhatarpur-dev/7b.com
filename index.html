@@ -84,7 +84,7 @@
         const container = document.getElementById('menu-items');
         container.innerHTML = "";
         for (let cat in menuData) {
-            container.innerHTML += <div class="cat-head">${cat}</div>;
+            container.innerHTML += '<div class="cat-head">${cat}</div>;
             menuData[cat].forEach(item => {
                 const count = cart[item.n] ? cart[item.n].q : 0;
                 container.innerHTML += `
@@ -141,5 +141,6 @@
 </body>
 
 </html>
+
 
 
