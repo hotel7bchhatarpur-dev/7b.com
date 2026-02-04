@@ -3,94 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel 7-B | Royal Guest Services</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Hotel 7-B Digital</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        :root { --p: #2c3e50; --s: #27ae60; --a: #e67e22; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 15px; color: #333; }
+        .card { max-width: 450px; margin: auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .room-badge { background: var(--a); color: white; padding: 6px 15px; border-radius: 50px; display: inline-block; font-weight: bold; margin-bottom: 20px; }
+        h1 { margin: 10px 0; color: var(--p); text-align: center; }
         
-        :root {
-            --royal-gold: #c5a059;
-            --deep-navy: #0a1128;
-            --ivory: #fcfaf7;
-        }
+        /* Buttons */
+        .btn-grid { display: grid; gap: 12px; }
+        .nav-btn { padding: 16px; border: none; border-radius: 12px; background: var(--p); color: white; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .nav-btn:active { transform: scale(0.95); }
+        .res-btn { background: var(--s); }
 
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background-color: var(--ivory);
-            color: var(--deep-navy);
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .royal-font { font-family: 'Cinzel', serif; }
-
-        .royal-gradient {
-            background: linear-gradient(135deg, #0a1128 0%, #1c2a4a 100%);
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 24px;
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:active { transform: scale(0.95); }
-
-        .item-card {
-            background: white;
-            border-radius: 20px;
-            border: 1px solid rgba(197, 160, 89, 0.1);
-        }
-
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        
-        .active-view { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Menu & Summary Styles */
+        .page { display: none; }
+        .active { display: block; }
+        .cat-head { background: #f0f0f0; padding: 10px; margin-top: 15px; border-radius: 8px; font-weight: bold; border-left: 5px solid var(--s); }
+        .item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .qty-box { display: flex; align-items: center; gap: 12px; }
+        .qty-box button { width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ddd; background: white; font-weight: bold; cursor: pointer; }
+        .summary-box { border: 2px dashed var(--p); padding: 15px; border-radius: 12px; margin: 20px 0; background: #fff9f5; }
     </style>
 </head>
-<body class="pb-32">
+<body>
 
-    <script>
-        const WHATSAPP_NUMBER = "919981014603";
-        const RECEPTION_NUMBER = "917880009215";
-    </script>
-
-    <!-- Royal Header -->
-    <header class="royal-gradient text-white px-6 pt-10 pb-24 rounded-b-[3.5rem] relative overflow-hidden shadow-2xl">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
-        <div class="relative z-10 flex justify-between items-center">
-            <div>
-                <h1 class="royal-font text-2xl font-bold tracking-[0.2em] text-[#c5a059]">HOTEL 7-B</h1>
-                <p class="text-[9px] uppercase tracking-[0.4em] text-white/50 mt-1">Chhatarpur's Finest Stay</p>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="showView('home')" class="p-3 bg-white/10 rounded-2xl backdrop-blur-md"><i data-lucide="home" class="w-5 h-5"></i></button>
-            </div>
+<div class="card">
+    <div id="home" class="page active">
+        <h1>Hotel 7-B 🏨</h1>
+        <center><div class="room-badge">Room No: <span id="room-id">...</span></div></center>
+        <div class="btn-grid">
+            <button class="nav-btn" onclick="quickRequest('Reception')">📞 Reception</button>
+            <button class="nav-btn res-btn" onclick="showPage('menu')">🍽️ Restaurant (Order Now)</button>
+            <button class="nav-btn" onclick="quickRequest('Housekeeping')">🧹 Housekeeping</button>
+            <button class="nav-btn" onclick="quickRequest('Help')">🆘 Help</button>
+            <button class="nav-btn" onclick="alert('Feedback system coming soon!')">⭐ Feedback</button>
         </div>
+    </div>
 
-        <!-- Room Input Area -->
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[88%] bg-white p-5 rounded-[2rem] shadow-xl border-b-4 border-[#c5a059] flex flex-col items-center">
-            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">अतिथि का रूम नंबर</span>
-            <input id="room-input" type="number" placeholder="---" class="w-full text-3xl font-bold text-center outline-none bg-transparent royal-font text-slate-800">
-        </div>
-    </header>
+    <div id="menu" class="page">
+        <button onclick="showPage('home')" style="background:#7f8c8d; width:auto;" class="nav-btn">← Back</button>
+        <h2>Digital Menu 📜</h2>
+        <div id="menu-items"></div>
+        <button class="nav-btn res-btn" style="width:100%; margin-top:20px;" onclick="viewSummary()">Check Order Summary 🛒</button>
+    </div>
 
-    <!-- Navigation Views -->
-    
-    <!-- 1. Home Dashboard -->
-    <main id="view-home" class="mt-16 px-6 space-y-6 active-view">
-        <h2 class="royal-font text-xl font-bold text-center mb-8">शाही सेवाएँ (Services)</h2>
-        
-        <div class="grid grid-cols-2 gap-4">
-            <!-- Restaurant -->
-            <button onclick="showView('restaurant')" class="service-card p-6 flex flex-col items-center text-center shadow-lg">
-                <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center mb-4 border border-orange-100">
-                    <i data-lucide="utensils" class="text-orange-600 w-7 h-7"></i>
-                </div>
-                <span class="font-bold text-sm">रेस्टोरेंट</span>
-                <span class="text-[9px] text-slate-400 uppercase mt-1">Food Menu</span>
-            </button>
+    <div id="summary" class="page">
+        <h2>Order Summary</h2>
+        <div id="summary-details" class="summary-box"></div>
+        <button class="nav-btn res-btn" style="width:100%" onclick="submitAll()">Confirm & Send Order ✅</button>
+        <button onclick="showPage('menu')" style="background:none; color:gray; border:none; width:100%; padding:15px; cursor:pointer;">Edit Items</button>
+    </div>
+</div>
 
-            <!-- Reception -->
-            <a href="tel:+917880009215
+<script>
+    // 🔗 अपना Google Apps Script URL यहाँ पेस्ट करें
+    const SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
+
+    // 🔑 रूम पहचान
+    const params = new URLSearchParams(window.location.search);
+    const room = params.get('room') || "WALK-IN";
+    document.getElementById('room-id').innerText = room;
+
+    const menuData = {
+        "Tea & Coffee": [{n: "Masala Tea", p: 39}, {n: "Cappuccino", p: 99}],
+        "Snacks": [{n: "Veg Pakoda", p: 129}, {n: "Veg Burger", p: 89}],
+        "Main Course": [{n: "Kadhai Paneer", p: 239}, {n: "Dal Makhni", p: 219}]
+    };
+
+    let cart = {};
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        if(id === 'menu') renderMenu();
+    }
+
+    function renderMenu() {
+        const container = document.getElementById('menu-items');
+        container.innerHTML = "";
+        for (let cat in menuData) {
+            container.innerHTML += <div class="cat-head">${cat}</div>;
+            menuData[cat].forEach(item => {
+                const count = cart[item.n] ? cart[item.n].q : 0;
+                container.innerHTML += `
+                    <div class="item">
+                        <span>${item.n} (₹${item.p})</span>
+                        <div class="qty-box">
+                            <button onclick="update('${item.n}', ${item.p}, -1)">-</button>
+                            <span>${count}</span>
+                            <button onclick="update('${item.n}', ${item.p}, 1)">+</button>
+                        </div>
+                    </div>`;
+            });
+        }
+    }
+
+    function update(n, p, c) {
+        if (!cart[n]) cart[n] = { q: 0, p: p };
+        cart[n].q += c;
+        if (cart[n].q <= 0) delete cart[n];
+        renderMenu();
+    }
+
+    function viewSummary() {
+        let total = 0, text = "";
+        for (let n in cart) {
+            text += <p>${n} x ${cart[n].q} = ₹${cart[n].q * cart[n].p}</p>;
+            total += cart[n].q * cart[n].p;
+        }
+        if (total === 0) return alert("Please select something!");
+        document.getElementById('summary-details').innerHTML = text + <hr><strong>Total: ₹${total}</strong>;
+        showPage('summary');
+    }
+
+    async function push(data) {
+        try {
+            await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) });
+            alert("Sent! ✅");
+            window.location.reload();
+        } catch (e) { alert("Error sending data."); }
+    }
+
+    function quickRequest(type) {
+        if(confirm(${type} के लिए रिक्वेस्ट भेजें?)) {
+            push({ room: room, request: type, details: "Service Request", total: 0 });
+        }
+    }
+
+    function submitAll() {
+        let det = Object.keys(cart).map(n => ${n}(${cart[n].q})).join(", ");
+        let tot = Object.values(cart).reduce((s, i) => s + (i.q * i.p), 0);
+        push({ room: room, request: "Restaurant Order", details: det, total: tot });
+    }
+</script>
+</body>
+</html>
